@@ -2,7 +2,8 @@ const createAutoComplete = ({
     root,
     renderOption,
     onOptionSelect,
-    inputValue
+    inputValue,
+    className,
 }) => {
     root.innerHTML = `
         <div class="dropdown">
@@ -12,15 +13,17 @@ const createAutoComplete = ({
                 </div>
             </div>
         </div>
+        <div class="detail">
+        <div>
     `;
 
     const summary = root.querySelector('.results');
     const dropdown = root.querySelector('.dropdown');
     const input = root.querySelector('input');
+    const details = root.querySelector('.detail');
 
     const ontyping = async eventObj => {
         const list = await searchMovieWithName(eventObj.target.value);
-        console.log(list);
 
         if (!list.length) {
             dropdown.classList.remove('is-active');
@@ -39,7 +42,7 @@ const createAutoComplete = ({
             anchor.addEventListener('click',() => {
                 dropdown.classList.remove('is-active');
                 input.value = inputValue(item);
-                onOptionSelect(item, root);
+                onOptionSelect(item, root, className, details);
             })
         }
     }

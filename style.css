@@ -46,4 +46,9 @@
     margin-right: 10px;
   }
 
+  input[type="text"] {
+    width: 450px;
+    max-width: 100%;
+  }
+
   
